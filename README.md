@@ -25,8 +25,6 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 
 ***
 <h3 align="center"> For CIFAR-10 Dataset </h3>
-***
-
 | Parameters                        | HD-CapsNet | HD-CapsNet (W/O Lc) | Mod-1.1 | Mod-1.2 | Mod-1.3 | Mod-1.4 |
 |-----------------------------------|------------|---------------------|---------|---------|---------|---------|
 | Total  Trainable       params (M) | 5.04       | 5.04                | 5.03    | 4.74    | 5.03    | 4.74    |
@@ -40,8 +38,7 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 | Exact Match                       | 90.75%     | 90.56%              | 90.89%  | 87.42%  | 90.80%  | 89.28%  |
 
 ***
-<font size="3"><center><b> For CIFAR-100 Dataset </b></center></font>
-***
+<h3 align="center"> For CIFAR-100 Dataset </h3>
 |            Parameters            | HD-CapsNet | HD-CapsNet (W/O Lc) | Mod-1.1 | Mod-1.2 | Mod-1.3 | Mod-1.4 |
 |:--------------------------------:|:----------:|:-------------------:|:-------:|:-------:|:-------:|:-------:|
 | Total  Trainable      params (M) |    8.52    |         8.52        |   8.37  |   5.22  |   8.37  |   5.22  |
