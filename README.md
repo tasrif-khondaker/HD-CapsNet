@@ -11,6 +11,7 @@
 		1.1 Applying top-down approach (Coarse-to-Fine)
 		1.2 Applying bottom-up approach (Fine-to-Coarse)
 ### For both (1.1 and 1.2) train the model with and without the consistency loss $L_{cons}$ function
-	**For training the model without $L_{cons}$ just applied Hinge loss (Margin Loss) for each level**
+
+**For training the model without $L_{cons}$ just applied Hinge loss (Margin Loss) for each level**
 
 #Results:
