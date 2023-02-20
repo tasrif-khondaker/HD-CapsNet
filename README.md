@@ -30,7 +30,8 @@
 |            Exact Match            |   90.75%   |          90.56%          |  90.89%  |  87.42%  |  90.80%  |  89.28%  |   64.08%   |          62.53%          |   64.04%  |   60.44%  |   62.39%  |   53.93%  |
 
 ### Here the following Modification applies:
-	Mod-1.1 = Bottom-Up (BU) Approach With $L_{cons}$    \[Fine-to-Coarse\]		
-	Mod-1.2	= Top-Down (TD) approach With $L_{cons}$	 \[Coarse-to-Fine\]			
-	Mod-1.3	= Bottom-Up (BU) Approach Without $L_{cons}$ \[Fine-to-Coarse\]				
-	Mod-1.4	= Bottom-Up (TD) Approach Without $L_{cons}$ \[Coarse-to-Fine\]				
+
+- Mod-1.1 = Bottom-Up (BU) Approach With $L_{cons}$    \[Fine-to-Coarse\]		
+- Mod-1.2	= Top-Down (TD) approach With $L_{cons}$	 \[Coarse-to-Fine\]			
+- Mod-1.3	= Bottom-Up (BU) Approach Without $L_{cons}$ \[Fine-to-Coarse\]				
+- Mod-1.4	= Bottom-Up (TD) Approach Without $L_{cons}$ \[Coarse-to-Fine\]				
