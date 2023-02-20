@@ -24,9 +24,7 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 - Mod-1.4	= Bottom-Up (TD) Approach Without $L_{cons}$ \[Coarse-to-Fine\]	
 
 ***
-<h1 align="center">
-<font size="3"><center><b> For CIFAR-10 Dataset </b></center></font>
-</h1>
+<h3 align="center"> For CIFAR-10 Dataset </h3>
 ***
 
 | Parameters                        | HD-CapsNet | HD-CapsNet (W/O Lc) | Mod-1.1 | Mod-1.2 | Mod-1.3 | Mod-1.4 |
