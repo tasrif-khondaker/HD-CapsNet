@@ -6,8 +6,6 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 ![fig:Architecture](Results/Architecture.png?raw=true "Architecture of the HD-CapsNet")
  
 ## The following changes are made in the architecture.
-| Modifications |              Approach              | Dimention of <br />primary   capsule <br />($P$) | Dimention of <br   />Secondary capsule <br />($S_{i}$) |                             Loss Function                             |
-|:-------------:|:----------------------------------:|:------------------------------------------------:|:------------------------------------------------------:|:---------------------------------------------------------------------:|
 | Modifications | Approach                         | Dimention of <br />primary capsule   <br />($P$) | Dimention of <br />Secondary capsule   <br />($S_{i}$) | Loss Function                                                       |
 |---------------|----------------------------------|--------------------------------------------------|--------------------------------------------------------|---------------------------------------------------------------------|
 | Mod-1.1       | Bottom-UP <br />[Fine-to-Coarse] | 8D                                               | 16D>12D>8D <br />(Fine>Medium>Coarse)                  | Hinge loss (Margin Loss) **With** <br />Consistency ($L_{cons}$)    |
