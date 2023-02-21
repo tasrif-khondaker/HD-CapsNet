@@ -1,4 +1,4 @@
-Modifications,Approach,Dimention of <br />primary capsule <br />($P$),Dimention of <br />Secondary capsule <br />($S_{i}$),Loss Function
+Modifications,Approach,Dimention of primary capsule <br />($P$),Dimention of <br />Secondary capsule <br />($S_{i}$),Loss Function
 Mod-1.1,Bottom-UP <br />[Fine-to-Coarse],8D,16D>12D>8D <br />(Fine>Medium>Coarse),Hinge loss (Margin Loss) **With** <br />Consistency ($L_{cons}$)
 Mod-1.2,Top-Down <br />[Coarse-to-Fine],8D,8D>12D>16D <br />(Coarse>Medium>FINE),Hinge loss (Margin Loss) **With** <br />Consistency ($L_{cons}$)
 Mod-1.3,Bottom-UP <br />[Fine-to-Coarse],8D,16D>12D>8D <br />(Fine>Medium>Coarse),Hinge loss (Margin Loss) **Without** <br />Consistency ($L_{cons}$)
