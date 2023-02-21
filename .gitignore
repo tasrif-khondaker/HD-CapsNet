@@ -1,4 +1,4 @@
 *.pyc
 *.ipynb_checkpoints
 /Training_and_Analysis/*/logs/*
-/logs/*epoch-best.h5
+*.h5
