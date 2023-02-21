@@ -6,16 +6,16 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 ![fig:Architecture](Results/Architecture.png?raw=true "Architecture of the HD-CapsNet")
  
 ## The following changes are made in the architecture.
-| Modifications |          Approach          | Dimention of primary capsule   ($P$) | Dimention of Secondary capsule   ($S_{i}$) |                        Loss Function                        |
-|:-------------:|:--------------------------:|:------------------------------------:|:------------------------------------------:|:-----------------------------------------------------------:|
-|    Mod-1.1    | Bottom-UP [Fine-to-Coarse] |                  8D                  |      16D>12D>8D   (Fine>Medium>Coarse)     |   Hinge loss (Margin Loss) With   Consistency ($L_{cons}$)  |
-|    Mod-1.2    |  Top-Down [Coarse-to-Fine] |                  8D                  |      8D>12D>16D   (Coarse>Medium>FINE)     |   Hinge loss (Margin Loss) With   Consistency ($L_{cons}$)  |
-|    Mod-1.3    | Bottom-UP [Fine-to-Coarse] |                  8D                  |      16D>12D>8D   (Fine>Medium>Coarse)     | Hinge loss (Margin Loss) Without   Consistency ($L_{cons}$) |
-|    Mod-1.4    |  Top-Down [Coarse-to-Fine] |                  8D                  |      8D>12D>16D   (Coarse>Medium>FINE)     | Hinge loss (Margin Loss) Without   Consistency ($L_{cons}$) |
-|    Mod-2.1    |  Top-Down [Coarse-to-Fine] |                  8D                  |      32D>16D>8D   (Coarse>Medium>FINE)     |   Hinge loss (Margin Loss) With   Consistency ($L_{cons}$)  |
-|    Mod-2.2    |  Top-Down [Coarse-to-Fine] |                  16D                 |      32D>16D>8D   (Coarse>Medium>FINE)     |   Hinge loss (Margin Loss) With   Consistency ($L_{cons}$)  |
-|    Mod-2.3    |  Top-Down [Coarse-to-Fine] |                  8D                  |      32D>16D>8D   (Coarse>Medium>FINE)     | Hinge loss (Margin Loss) Without   Consistency ($L_{cons}$) |
-|    Mod-2.4    |  Top-Down [Coarse-to-Fine] |                  16D                 |      32D>16D>8D   (Coarse>Medium>FINE)     | Hinge loss (Margin Loss) Without   Consistency ($L_{cons}$) |
+| Modifications |              Approach              | Dimention of <br />primary   capsule <br />($P$) | Dimention of <br   />Secondary capsule <br />($S_{i}$) |                             Loss Function                             |
+|:-------------:|:----------------------------------:|:------------------------------------------------:|:------------------------------------------------------:|:---------------------------------------------------------------------:|
+|    Mod-1.1    | Bottom-UP <br   />[Fine-to-Coarse] |                        8D                        |         16D>12D>8D <br   />(Fine>Medium>Coarse)        |   Hinge loss (Margin Loss)   **With** <br />Consistency ($L_{cons}$)  |
+|    Mod-1.2    |  Top-Down <br   />[Coarse-to-Fine] |                        8D                        |         8D>12D>16D <br   />(Coarse>Medium>FINE)        |   Hinge loss (Margin Loss)   **With** <br />Consistency ($L_{cons}$)  |
+|    Mod-1.3    | Bottom-UP <br   />[Fine-to-Coarse] |                        8D                        |         16D>12D>8D <br   />(Fine>Medium>Coarse)        | Hinge loss (Margin Loss)   **Without** <br />Consistency ($L_{cons}$) |
+|    Mod-1.4    |  Top-Down <br   />[Coarse-to-Fine] |                        8D                        |         8D>12D>16D <br   />(Coarse>Medium>FINE)        | Hinge loss (Margin Loss)   **Without** <br />Consistency ($L_{cons}$) |
+|    Mod-2.1    |  Top-Down <br   />[Coarse-to-Fine] |                        8D                        |         32D>16D>8D <br   />(Coarse>Medium>FINE)        |   Hinge loss (Margin Loss)   **With** <br />Consistency ($L_{cons}$)  |
+|    Mod-2.2    |  Top-Down <br   />[Coarse-to-Fine] |                        16D                       |         32D>16D>8D <br   />(Coarse>Medium>FINE)        |   Hinge loss (Margin Loss)   **With** <br />Consistency ($L_{cons}$)  |
+|    Mod-2.3    |  Top-Down <br   />[Coarse-to-Fine] |                        8D                        |         32D>16D>8D <br   />(Coarse>Medium>FINE)        | Hinge loss (Margin Loss)   **Without** <br />Consistency ($L_{cons}$) |
+|    Mod-2.4    |  Top-Down <br   />[Coarse-to-Fine] |                        16D                       |         32D>16D>8D <br   />(Coarse>Medium>FINE)        | Hinge loss (Margin Loss)   **Without** <br />Consistency ($L_{cons}$) |
 
 **For training the model without $L_{cons}$ just applied Hinge loss (Margin Loss) for each level**
 
@@ -39,9 +39,9 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 ***
 <h3 align="center"> For CIFAR-100 Dataset </h3>
 
-|            Parameters            | HD-CapsNet | HD-CapsNet (W/O Lc) | Mod-1.1 | Mod-1.2 | Mod-1.3 | Mod-1.4 |
+|            Parameters            | HD-CapsNet | HD-CapsNet <br />(W/O Lc) | Mod-1.1 | Mod-1.2 | Mod-1.3 | Mod-1.4 |
 |:--------------------------------:|:----------:|:-------------------:|:-------:|:-------:|:-------:|:-------:|
-| Total  Trainable      params (M) |    8.52    |         8.52        |   8.37  |   5.22  |   8.37  |   5.22  |
+| Total  Trainable <br />params (M) |    8.52    |         8.52        |   8.37  |   5.22  |   8.37  |   5.22  |
 |          Accuracy Coarse         |   86.85%   |        86.03%       |  86.75% |  86.93% |  86.18% |  86.45% |
 |          Accuracy Medium         |   79.14%   |        77.83%       |  78.95% |  78.73% |  78.31% |  77.78% |
 |           Accuracy Fine          |   66.18%   |        64.87%       |  66.17% |  61.70% |  64.69% |  55.18% |
