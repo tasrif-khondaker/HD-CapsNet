@@ -235,6 +235,155 @@ def HD_CapsNet(input_shape, input_shape_yc, input_shape_ym, input_shape_yf,
                         name=model_name)    
     return model
     
+def HD_CapsNet_Mod_3_3(input_shape, input_shape_yc, input_shape_ym, 
+                        input_shape_yf, no_coarse_class, no_medium_class, no_fine_class,
+                        PCap_n_dims = 8, SCap_f_dims = 16, SCap_m_dims = 32, SCap_c_dims = 64):
+
+    # Input image
+    x_input = keras.layers.Input(shape=input_shape, name="Input_Image")
+
+    # Input True Labels
+    y_c = keras.layers.Input(shape=input_shape_yc, name='input_yc')
+    y_m = keras.layers.Input(shape=input_shape_ym, name='input_ym')
+    y_f = keras.layers.Input(shape=input_shape_yf, name='input_yf')
+
+    #--- block 1 ---
+    x = keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same', name='block1_conv1')(x_input)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same', name='block1_conv2')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block1_pool')(x)
+
+    #--- block 2 ---
+    x = keras.layers.Conv2D(128, (3, 3), activation='relu', padding='same', name='block2_conv1')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.Conv2D(128, (3, 3), activation='relu', padding='same', name='block2_conv2')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block2_pool')(x)
+
+    #--- block 3 ---
+    x = keras.layers.Conv2D(256, (3, 3), activation='relu', padding='same', name='block3_conv1')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.Conv2D(256, (3, 3), activation='relu', padding='same', name='block3_conv2')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block3_pool')(x)
+
+    #--- block 4 ---
+    x = keras.layers.Conv2D(512, (3, 3), activation='relu', padding='same', name='block4_conv1')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.Conv2D(512, (3, 3), activation='relu', padding='same', name='block4_conv2')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block4_pool')(x)
+
+
+    # Layer 3: Reshape to 8D primary capsules 
+    reshape = keras.layers.Reshape((int((tf.reduce_prod(x.shape[1:]).numpy())/PCap_n_dims),
+                                     PCap_n_dims), name="reshape_layer")(x)
+    p_caps = keras.layers.Lambda(squash, name='p_caps')(reshape)
+
+    ## Layer Secondary Capsule: For coarse level
+    s_caps_c = SecondaryCapsule(n_caps=no_coarse_class, n_dims=SCap_c_dims, 
+                        name="s_caps_coarse")(p_caps)
+
+    ## Skip Connection: For Medium Level
+    p_caps_m = keras.layers.Reshape((int((tf.reduce_prod(p_caps.shape[1:]).numpy())/s_caps_c.shape[-1]),
+                                     s_caps_c.shape[-1]), name="primary_skip_m")(p_caps)
+    skip_m = keras.layers.Concatenate(axis=1, name="skip_connection_m")([p_caps_m, s_caps_c])
+
+    ## Layer Secondary Capsule: For medium level
+    s_caps_m = SecondaryCapsule(n_caps=no_medium_class, n_dims=SCap_m_dims, 
+                        name="s_caps_medium")(skip_m)
+
+    ## Skip Connection: For Fine Level
+    p_caps_f = keras.layers.Reshape((int((tf.reduce_prod(p_caps.shape[1:]).numpy())/s_caps_m.shape[-1]),
+                                     s_caps_m.shape[-1]), name="primary_skip_f")(p_caps)
+    skip_f = keras.layers.Concatenate(axis=1, name="skip_connection_f")([p_caps_f, s_caps_m])
+
+    ## Layer Secondary Capsule: For fine level
+    s_caps_f = SecondaryCapsule(n_caps=no_fine_class, n_dims=SCap_f_dims, 
+                        name="s_caps_fine")(skip_f)
+
+    pred_c = LengthLayer(name='prediction_coarse')(s_caps_c)
+
+    pred_m = LengthLayer(name='prediction_medium')(s_caps_m)
+
+    pred_f = LengthLayer(name='prediction_fine')(s_caps_f)
+
+    model = keras.Model(inputs= [x_input, y_c, y_m, y_f],
+                        outputs= [pred_c, pred_m, pred_f],
+                        name='HD-CapsNet')
+    ## Return Model
+    return model
+
+   
+def HD_CapsNet_Mod_3_2(input_shape, input_shape_yc, input_shape_yf, 
+                        no_coarse_class, no_fine_class,
+                        PCap_n_dims = 8, SCap_f_dims = 16, SCap_c_dims = 32):
+
+    # Input image
+    x_input = keras.layers.Input(shape=input_shape, name="Input_Image")
+
+    # Input True Labels
+    y_c = keras.layers.Input(shape=input_shape_yc, name='input_yc')
+    y_f = keras.layers.Input(shape=input_shape_yf, name='input_yf')
+
+    #--- block 1 ---
+    x = keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same', name='block1_conv1')(x_input)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same', name='block1_conv2')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block1_pool')(x)
+
+    #--- block 2 ---
+    x = keras.layers.Conv2D(128, (3, 3), activation='relu', padding='same', name='block2_conv1')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.Conv2D(128, (3, 3), activation='relu', padding='same', name='block2_conv2')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block2_pool')(x)
+
+    #--- block 3 ---
+    x = keras.layers.Conv2D(256, (3, 3), activation='relu', padding='same', name='block3_conv1')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.Conv2D(256, (3, 3), activation='relu', padding='same', name='block3_conv2')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block3_pool')(x)
+
+    #--- block 4 ---
+    x = keras.layers.Conv2D(512, (3, 3), activation='relu', padding='same', name='block4_conv1')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.Conv2D(512, (3, 3), activation='relu', padding='same', name='block4_conv2')(x)
+    x = keras.layers.BatchNormalization()(x)
+    x = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block4_pool')(x)
+
+
+    # Layer 3: Reshape to 8D primary capsules 
+    reshape = keras.layers.Reshape((int((tf.reduce_prod(x.shape[1:]).numpy())/PCap_n_dims),
+                                     PCap_n_dims), name="reshape_layer")(x)
+    p_caps = keras.layers.Lambda(squash, name='p_caps')(reshape)
+
+    ## Layer Secondary Capsule: For coarse level
+    s_caps_c = SecondaryCapsule(n_caps=no_coarse_class, n_dims=SCap_c_dims, 
+                        name="s_caps_coarse")(p_caps)
+
+    ## Skip Connection: For Fine Level
+    p_caps_f = keras.layers.Reshape((int((tf.reduce_prod(p_caps.shape[1:]).numpy())/s_caps_c.shape[-1]),
+                                     s_caps_c.shape[-1]), name="primary_skip_f")(p_caps)
+    skip_f = keras.layers.Concatenate(axis=1, name="skip_connection_f")([p_caps_f, s_caps_c])
+
+    ## Layer Secondary Capsule: For fine level
+    s_caps_f = SecondaryCapsule(n_caps=no_fine_class, n_dims=SCap_f_dims, 
+                        name="s_caps_fine")(skip_f)
+
+    pred_c = LengthLayer(name='prediction_coarse')(s_caps_c)
+
+    pred_f = LengthLayer(name='prediction_fine')(s_caps_f)
+
+    model = keras.Model(inputs= [x_input, y_c, y_f],
+                        outputs= [pred_c, pred_f],
+                        name='HD-CapsNet')
+    ## Return Model
+    return model
+
 def B_CNN_Model_B(input_shape, num_class_c, num_class_m, num_class_f, 
                   model_name:str='B_CNN_Model_B'):
     
@@ -459,6 +608,7 @@ class LossWeightsModifier(keras.callbacks.Callback):
             ## Setting Loss weight Values
             K.set_value(self.coarse_lw, L1)
             K.set_value(self.fine_lw, L2)
+             
         
 class model_analysis():
         def __init__(self, model: keras.Model, dataset: dict):
