@@ -1,7 +1,7 @@
 # Modification-2 of HD-CapsNet
 Hierarchical Deep Capsule Network For Image Classification. The model employs capsule network for each hierarchical levels, treating as a global classification model.
  
-**The architecture of the BUH-CapsNet woth Consistency loss is as follows:**
+**The architecture of the BUH-CapsNet with Consistency loss is as follows:**
  
 ![fig:Architecture](Results/Architecture_BUH_CapsNet.png?raw=true "Architecture of the BUH-CapsNet")
 
