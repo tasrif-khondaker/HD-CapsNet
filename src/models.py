@@ -475,7 +475,7 @@ class LossWeightsModifier(keras.callbacks.Callback):
 
         self.lossweight = lossweight
         self.directory = directory
-        self.reconstruction_loss = lossweight['decoder_lw']
+        self.consistency_loss = lossweight['consistency_lw']
         
         if 'coarse_lw' in self.lossweight and 'medium_lw' in self.lossweight and 'fine_lw' in self.lossweight:
             self.coarse_lw = lossweight['coarse_lw']
@@ -527,9 +527,9 @@ class LossWeightsModifier(keras.callbacks.Callback):
             tau3 = (1.0-ACC3) * self.c3
             
             # Updated Loss for each classes
-            L1 = float((1-self.reconstruction_loss) * (tau1 / (tau1 + tau2 + tau3)))
-            L2 = float((1-self.reconstruction_loss) * (tau2 / (tau1 + tau2 + tau3)))
-            L3 = float((1-self.reconstruction_loss) * (tau3 / (tau1 + tau2 + tau3)))
+            L1 = float((1-self.consistency_loss) * (tau1 / (tau1 + tau2 + tau3)))
+            L2 = float((1-self.consistency_loss) * (tau2 / (tau1 + tau2 + tau3)))
+            L3 = float((1-self.consistency_loss) * (tau3 / (tau1 + tau2 + tau3)))
             
             print('\n\033[91m','\033[1m',"\u2022",
                   "Coarse Accuracy =",'{:.2f}%'.format(ACC1*100),"|",
@@ -580,8 +580,8 @@ class LossWeightsModifier(keras.callbacks.Callback):
             tau2 = (1.0-ACC2) * self.c2
             
             # Updated Loss for each classes
-            L1 = float((1-self.reconstruction_loss) * (tau1 / (tau1 + tau2)))
-            L2 = float((1-self.reconstruction_loss) * (tau2 / (tau1 + tau2)))
+            L1 = float((1-self.consistency_loss) * (tau1 / (tau1 + tau2)))
+            L2 = float((1-self.consistency_loss) * (tau2 / (tau1 + tau2)))
             
             print('\n\033[91m','\033[1m',"\u2022",
                   "Coarse Accuracy =",'{:.2f}%'.format(ACC1*100),"|",
