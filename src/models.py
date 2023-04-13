@@ -475,7 +475,7 @@ class LossWeightsModifier(keras.callbacks.Callback):
 
         self.lossweight = lossweight
         self.directory = directory
-        self.consistency_loss = lossweight['consistency_lw']
+        self.consistency_loss = lossweight['decoder_lw']
         
         if 'coarse_lw' in self.lossweight and 'medium_lw' in self.lossweight and 'fine_lw' in self.lossweight:
             self.coarse_lw = lossweight['coarse_lw']

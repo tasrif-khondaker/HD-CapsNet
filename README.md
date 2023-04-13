@@ -1,9 +1,9 @@
 # Modification-2 of HD-CapsNet
 Hierarchical Deep Capsule Network For Image Classification. The model employs capsule network for each hierarchical levels, treating as a global classification model.
  
-**The architecture of the BUH-CapsNet with Consistency loss is as follows:**
+<!-- **The architecture of the BUH-CapsNet with Consistency loss is as follows:**
  
-![fig:Architecture](Results/Architecture_BUH_CapsNet.png?raw=true "Architecture of the BUH-CapsNet")
+![fig:Architecture](Results/Architecture_BUH_CapsNet.png?raw=true "Architecture of the BUH-CapsNet") -->
 
 **The architecture of the HD-CapsNet is as follows:**
 ![fig:Architecture](Results/Architecture_HD_CapsNet.png?raw=true "Architecture of the HD-CapsNet")
@@ -55,7 +55,10 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 |                 |         |                                     |                 |                 |               |                        |                     |                       |             |             |
 |  Stanford Cars  | Mod-3.3 |                81.17                |      53.34%     |      19.52%     |     14.05%    |         26.73%         |        34.69%       |         29.73%        |    29.15%   |    8.13%    |
 |  Stanford Cars  | Mod-3.4 |                81.17                |      47.50%     |      16.39%     |     11.74%    |         23.56%         |        31.40%       |         26.50%        |    25.76%   |    6.19%    |
-			
+|	|	|	|	|	|	|	|	|	|	|	|
+| Marine Tree | Mod-3.3 | 13.58 | 89.88% | 78.60% | 57.15% | 75.02% | 76.04% | 75.44% | 94.47% | 55.59% |
+| Marine Tree | Mod-3.4 | 13.58 | 89.50% | 77.57% | 53.75% | 73.29% | 74.76% | 73.88% | 92.37% | 51.85% |
+
 # Analysis:
 1. From Modification-1:
 	- Slowly increasing the dimension from *Coarse-to-Fine* \[8D>12D>16D (Coarse>Medium>FINE)\]for decreasing the dimension from *Fine-to-Coarse* \[16D>12D>8D (Fine>Medium>Coarse)\] seems to have effects on Mod-1.1 and Mod-1.3.
