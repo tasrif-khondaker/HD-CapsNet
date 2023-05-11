@@ -161,7 +161,12 @@ class MarginLoss(keras.losses.Loss):
 def HD_CapsNet(input_shape, input_shape_yc, input_shape_ym, input_shape_yf,
                 no_coarse_class = 2, no_medium_class = 7, no_fine_class = 10,
                 PCap_n_dims = 8, SCap_f_dims = 16, SCap_m_dims = 16, SCap_c_dims = 16, 
-                model_name = 'HD-CapsNet'):
+                model_name = 'BUH-CapsNet'): ## Name should be changed to BUH-CapsNet
+    """ This is a Bottom-up Hierarchical Deep Capsule Network (HD-CapsNet) model architecture
+    Secondary Capsules are formed by stacking from Fine to Coarse level.
+    Output of the primary capsules are fed to the secondary capsules of the last hierarchy.
+    The output of the secondary capsules are fed to the secondary capsules of the previous hierarchy.
+    """
                 
     ### Layer-1: Inputs ###
 
@@ -214,7 +219,7 @@ def HD_CapsNet(input_shape, input_shape_yc, input_shape_ym, input_shape_yf,
                         name="s_caps_fine")(p_caps)
 
     #--- Secondary Capsule for medium level ---#
-    s_caps_m = SecondaryCapsule(n_caps=no_medium_class, n_dims=SCap_f_dims, 
+    s_caps_m = SecondaryCapsule(n_caps=no_medium_class, n_dims=SCap_m_dims, 
                         name="s_caps_medium")(s_caps_f)
 
     #--- Secondary Capsule for coarse level ---#
@@ -234,7 +239,87 @@ def HD_CapsNet(input_shape, input_shape_yc, input_shape_ym, input_shape_yf,
                         outputs= [pred_c, pred_m, pred_f],
                         name=model_name)    
     return model
+
+def HD_CapsNet_without_skip(input_shape, input_shape_yc, input_shape_ym, input_shape_yf,
+                no_coarse_class = 2, no_medium_class = 7, no_fine_class = 10,
+                PCap_n_dims = 8, SCap_f_dims = 16, SCap_m_dims = 16, SCap_c_dims = 16, 
+                model_name = 'HD-CapsNet_without_skip'):
+    '''
+    HD-CapsNet without skip connections.
+    '''
+    ### Layer-1: Inputs ###
+
+    # Input image
+    x_input = keras.layers.Input(shape=input_shape, name="Input_Image")
     
+    # Input True Labels
+    y_c = keras.layers.Input(shape=input_shape_yc, name='input_yc')
+    y_m = keras.layers.Input(shape=input_shape_ym, name='input_ym')
+    y_f = keras.layers.Input(shape=input_shape_yf, name='input_yf')
+
+    ## Feature Extraction Blocks ##
+    #--- Sub-block 1 ---#
+    x1 = keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same', name='block1_conv1')(x_input)
+    x1 = keras.layers.BatchNormalization()(x1)
+    x1 = keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same', name='block1_conv2')(x1)
+    x1 = keras.layers.BatchNormalization()(x1)
+    x1 = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block1_pool')(x1)
+
+    #--- Sub-block 2 ---#
+    x2 = keras.layers.Conv2D(128, (3, 3), activation='relu', padding='same', name='block2_conv1')(x1)
+    x2 = keras.layers.BatchNormalization()(x2)
+    x2 = keras.layers.Conv2D(128, (3, 3), activation='relu', padding='same', name='block2_conv2')(x2)
+    x2 = keras.layers.BatchNormalization()(x2)
+    x2 = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block2_pool')(x2)
+
+    #--- Sub-block 3 ---#
+    x3 = keras.layers.Conv2D(256, (3, 3), activation='relu', padding='same', name='block3_conv1')(x2)
+    x3 = keras.layers.BatchNormalization()(x3)
+    x3 = keras.layers.Conv2D(256, (3, 3), activation='relu', padding='same', name='block3_conv2')(x3)
+    x3 = keras.layers.BatchNormalization()(x3)
+    x3 = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block3_pool')(x3)
+
+    #--- Sub-block 4 ---#
+    x4 = keras.layers.Conv2D(512, (3, 3), activation='relu', padding='same', name='block4_conv1')(x3)
+    x4 = keras.layers.BatchNormalization()(x4)
+    x4 = keras.layers.Conv2D(512, (3, 3), activation='relu', padding='same', name='block4_conv2')(x4)
+    x4 = keras.layers.BatchNormalization()(x4)
+    x4 = keras.layers.MaxPooling2D((2, 2), strides=(2, 2), name='block4_pool')(x4)
+
+    ## Primary Capsule layer ##
+    reshape = keras.layers.Reshape((int((tf.reduce_prod(x4.shape[1:]).numpy())/PCap_n_dims),
+                                     PCap_n_dims), name="reshape_layer")(x4) # Reshape to [None, num_capsule, dim_capsule]
+    p_caps = keras.layers.Lambda(squash, name='p_caps')(reshape) # Squash activation function
+                                                                # to squash the length of a vector to <= 1
+                                                                # output shape = [None, num_capsule, dim_capsule]
+
+    ## Secondary Capsule layer ##
+    #--- Secondary Capsule for coarse level ---#
+    s_caps_c = SecondaryCapsule(n_caps=no_coarse_class, n_dims=SCap_c_dims, 
+                        name="s_caps_coarse")(p_caps) # output shape = [None, num_capsule, number_of_coarse_class]
+    #--- Secondary Capsule for medium level ---#
+    s_caps_m = SecondaryCapsule(n_caps=no_medium_class, n_dims=SCap_m_dims,
+                        name="s_caps_medium")(s_caps_c) # output shape = [None, num_capsule, number_of_medium_class]
+    #--- Secondary Capsule for fine level ---#
+    s_caps_f = SecondaryCapsule(n_caps=no_fine_class, n_dims=SCap_f_dims,
+                        name="s_caps_fine")(s_caps_m) # output shape = [None, num_capsule, number_of_fine_class]
+    
+    ## Prediction Layer: Length of the vectors ##
+    #--- Prediction for coarse level ---#
+    pred_c = LengthLayer(name='prediction_coarse')(s_caps_c)
+    #--- Prediction for medium level ---#
+    pred_m = LengthLayer(name='prediction_medium')(s_caps_m)
+    #--- Prediction for fine level ---#
+    pred_f = LengthLayer(name='prediction_fine')(s_caps_f)
+
+    ## Model ##
+    model = keras.Model(inputs= [x_input, y_c, y_m, y_f],
+                        outputs= [pred_c, pred_m, pred_f],
+                        name='HD-CapsNet')
+    ## Return Model
+    return model
+
+        
 def HD_CapsNet_Mod_3_3(input_shape, input_shape_yc, input_shape_ym, 
                         input_shape_yf, no_coarse_class, no_medium_class, no_fine_class,
                         PCap_n_dims = 8, SCap_f_dims = 16, SCap_m_dims = 32, SCap_c_dims = 64):
