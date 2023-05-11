@@ -83,3 +83,413 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 	- Skip connection is slightly below in hierarchical performance of bottom-up approach on CIFER-100 Dataset.
 		- With consistency loss it performed better then bottom-up approach with out consistency loss.
 
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-pm97{background-color:#FCFCFF;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-x1e6{background-color:#F8696B;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-sfj8{background-color:#63BE7B;border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-7btt">Dataset</th>
+    <th class="tg-7btt">Models</th>
+    <th class="tg-7btt">Model Description</th>
+    <th class="tg-7btt">Total  Trainable<br>     params (M)</th>
+    <th class="tg-7btt">Accuracy Coarse</th>
+    <th class="tg-7btt">Accuracy Medium</th>
+    <th class="tg-7btt">Accuracy Fine</th>
+    <th class="tg-7btt">Hierarchical Precision</th>
+    <th class="tg-7btt">Hierarchical Recall</th>
+    <th class="tg-7btt">Hierarchical F1-Score</th>
+    <th class="tg-7btt">Consistency</th>
+    <th class="tg-7btt">Exact Match</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky">EMNIST</td>
+    <td class="tg-0pky">Mod-3.1</td>
+    <td class="tg-0pky">HD-CapsNet With Consistency Loss   (Lc)</td>
+    <td class="tg-0pky">4.91</td>
+    <td class="tg-0pky">94.32%</td>
+    <td class="tg-0pky">--</td>
+    <td class="tg-0pky">89.28%</td>
+    <td class="tg-0pky">91.80%</td>
+    <td class="tg-0pky">92.01%</td>
+    <td class="tg-0pky">91.88%</td>
+    <td class="tg-0pky">99.15%</td>
+    <td class="tg-0pky">88.89%</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">EMNIST</td>
+    <td class="tg-0pky">Mod-3.2</td>
+    <td class="tg-0pky">HD-CapsNet Without Consistency   Loss (Lc)</td>
+    <td class="tg-0pky">4.91</td>
+    <td class="tg-0pky">94.22%</td>
+    <td class="tg-0pky">--</td>
+    <td class="tg-0pky">89.39%</td>
+    <td class="tg-0pky">91.81%</td>
+    <td class="tg-0pky">91.98%</td>
+    <td class="tg-0pky">91.88%</td>
+    <td class="tg-0pky">99.30%</td>
+    <td class="tg-0pky">89.06%</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Fashion   MNIST</td>
+    <td class="tg-0pky">Mod-2.1</td>
+    <td class="tg-0pky">HD-CapsNet Without Skip   Connection</td>
+    <td class="tg-0pky">4.73</td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">99.91%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">97.63%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">94.66%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">97.40%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">97.42%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">97.41%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">99.87%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">94.60%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Fashion   MNIST</td>
+    <td class="tg-0pky">Mod-3.1</td>
+    <td class="tg-0pky">HD-CapsNet With Consistency Loss   (Lc)</td>
+    <td class="tg-0pky">4.82</td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">99.92%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">97.79%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">94.83%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">97.51%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">97.54%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">97.52%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">99.84%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">94.74%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Fashion   MNIST</td>
+    <td class="tg-0pky">Mod-3.2</td>
+    <td class="tg-0pky">HD-CapsNet Without Consistency   Loss (Lc)</td>
+    <td class="tg-0pky">4.82</td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">99.89%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">97.78%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">94.92%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">97.53%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">97.59%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">97.55%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">99.70%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">94.77%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">CIFAR-10</td>
+    <td class="tg-0pky">Mod-2.1</td>
+    <td class="tg-0pky">HD-CapsNet Without Skip   Connection</td>
+    <td class="tg-0pky">4.84</td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">98.76%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">93.36%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">90.26%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">94.09%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">94.30%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">94.18%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">98.94%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">89.85%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">CIFAR-10</td>
+    <td class="tg-0pky">Mod-3.1</td>
+    <td class="tg-0pky">HD-CapsNet With Consistency Loss   (Lc)</td>
+    <td class="tg-0pky">5.23</td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">98.79%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">94.28%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">91.22%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">94.74%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">94.89%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">94.80%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">99.18%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">90.95%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">CIFAR-10</td>
+    <td class="tg-0pky">Mod-3.2</td>
+    <td class="tg-0pky">HD-CapsNet Without Consistency   Loss (Lc)</td>
+    <td class="tg-0pky">5.23</td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">98.71%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">94.01%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">90.97%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">94.53%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">94.73%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">94.62%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">98.99%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">90.58%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">CIFAR-100</td>
+    <td class="tg-0pky">Mod-2.1</td>
+    <td class="tg-0pky">HD-CapsNet Without Skip   Connection</td>
+    <td class="tg-0pky">5.55</td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">86.57%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">78.33%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">57.08%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">73.86%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">75.00%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">74.31%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">92.51%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">56.10%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">CIFAR-100</td>
+    <td class="tg-0pky">Mod-3.1</td>
+    <td class="tg-0pky">HD-CapsNet With Consistency Loss   (Lc)</td>
+    <td class="tg-0pky">7.85</td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">86.93%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">79.31%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">66.38%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">77.43%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">79.20%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">78.12%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">89.80%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">63.80%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">CIFAR-100</td>
+    <td class="tg-0pky">Mod-3.2</td>
+    <td class="tg-0pky">HD-CapsNet Without Consistency   Loss (Lc)</td>
+    <td class="tg-0pky">7.85</td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">86.81%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">78.73%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">66.23%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">77.10%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">79.02%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">77.85%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">88.62%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">63.36%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">CIFAR-100</td>
+    <td class="tg-0pky">Mod-3.2 T2</td>
+    <td class="tg-0pky">HD-CapsNet Without Consistency   Loss (Lc)</td>
+    <td class="tg-0pky">7.85</td>
+    <td class="tg-0pky">86.81%</td>
+    <td class="tg-0pky">78.73%</td>
+    <td class="tg-0pky">66.23%</td>
+    <td class="tg-0pky">77.84%</td>
+    <td class="tg-0pky">79.56%</td>
+    <td class="tg-0pky">78.52%</td>
+    <td class="tg-0pky">89.78%</td>
+    <td class="tg-0pky">64.41%</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">CU Bird</td>
+    <td class="tg-0pky">Mod-2.9</td>
+    <td class="tg-0pky">HD-CapsNet Without Skip   Connection</td>
+    <td class="tg-0pky">47.56</td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">35.66%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">16.98%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">2.14%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">14.97%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">20.86%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">17.13%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">21.44%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">1.55%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">CU Bird</td>
+    <td class="tg-0pky">Mod-3.3</td>
+    <td class="tg-0pky">HD-CapsNet With Consistency Loss   (Lc)</td>
+    <td class="tg-0pky">106.01</td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">40.42%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">21.61%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">13.39%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">23.47%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">30.33%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">26.01%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">27.34%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">8.63%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">CU Bird</td>
+    <td class="tg-0pky">Mod-3.4</td>
+    <td class="tg-0pky">HD-CapsNet Without Consistency   Loss (Lc)</td>
+    <td class="tg-0pky">106.01</td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">36.59%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">17.78%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">10.87%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">20.29%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">26.56%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">22.62%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">24.09%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">6.28%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Stanford Cars</td>
+    <td class="tg-0pky">Mod-2.9</td>
+    <td class="tg-0pky">HD-CapsNet Without Skip   Connection</td>
+    <td class="tg-0pky">25.85</td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">46.01%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">12.29%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">1.57%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">17.10%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">24.04%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">19.79%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">13.60%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">0.87%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Stanford Cars</td>
+    <td class="tg-0pky">Mod-3.3</td>
+    <td class="tg-0pky">HD-CapsNet With Consistency Loss   (Lc)</td>
+    <td class="tg-0pky">81.17</td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">53.34%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">19.52%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">14.05%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">26.73%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">34.69%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">29.73%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">29.15%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">8.13%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Stanford Cars</td>
+    <td class="tg-0pky">Mod-3.4</td>
+    <td class="tg-0pky">HD-CapsNet Without Consistency   Loss (Lc)</td>
+    <td class="tg-0pky">81.17</td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">47.50%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">16.39%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">11.74%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">23.56%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">31.40%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">26.50%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">25.76%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">6.19%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Marine Tree</td>
+    <td class="tg-0pky">Mod-2.9</td>
+    <td class="tg-0pky">HD-CapsNet Without Skip   Connection</td>
+    <td class="tg-0pky">5.97</td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">86.98%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">77.82%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">55.04%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">73.35%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">75.76%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">74.36%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">86.95%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">49.34%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Marine Tree</td>
+    <td class="tg-0pky">Mod-3.3</td>
+    <td class="tg-0pky">HD-CapsNet With Consistency Loss   (Lc)</td>
+    <td class="tg-0pky">13.58</td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">89.88%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">78.60%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">57.15%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">75.02%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">76.04%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">75.44%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">94.47%</span></td>
+    <td class="tg-sfj8"><span style="background-color:#63BE7B">55.59%</span></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Marine Tree</td>
+    <td class="tg-0pky">Mod-3.4</td>
+    <td class="tg-0pky">HD-CapsNet Without Consistency   Loss (Lc)</td>
+    <td class="tg-0pky">13.58</td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">89.50%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">77.57%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">53.75%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">73.29%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">74.76%</span></td>
+    <td class="tg-x1e6"><span style="background-color:#F8696B">73.88%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">92.37%</span></td>
+    <td class="tg-pm97"><span style="background-color:#FCFCFF">51.85%</span></td>
+  </tr>
+</tbody>
+</table>
