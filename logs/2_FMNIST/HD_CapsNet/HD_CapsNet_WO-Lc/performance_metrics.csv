@@ -1,0 +1,19 @@
+,Value
+Dataset,FMNIST
+Model,HD-CapsNet
+Accuracy L_0,0.9989
+Accuracy L_1,0.9778
+Accuracy L_2,0.9492
+HarmonicM_Accuracy_k1,0.9748729761359314
+HarmonicM_Accuracy_k2,0.9883226701366916
+HarmonicM_Accuracy_k5,0.9932796896229343
+ArithmeticM_Accuracy_k1,0.9753000000000002
+ArithmeticM_Accuracy_k2,0.9884333333333334
+ArithmeticM_Accuracy_k5,0.9933333333333333
+Harmonic_mAP_Score,0.9795446075789733
+Arithmetic_mAP_Score,0.9798484080205475
+hP,0.97526
+hR,0.9758666666666668
+hF1,0.9755178571428571
+consistency,0.997
+exact_match,0.9477

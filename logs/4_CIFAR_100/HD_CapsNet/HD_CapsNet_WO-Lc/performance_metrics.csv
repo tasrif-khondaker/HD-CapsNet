@@ -1,0 +1,19 @@
+,Value
+Dataset,CIFAR-100
+Model,HD-CapsNet
+Accuracy L_0,0.8681
+Accuracy L_1,0.7873
+Accuracy L_2,0.6623
+HarmonicM_Accuracy_k1,0.762971536634848
+HarmonicM_Accuracy_k2,0.8520383567853881
+HarmonicM_Accuracy_k5,0.9122669445210783
+ArithmeticM_Accuracy_k1,0.7725666666666666
+ArithmeticM_Accuracy_k2,0.8584
+ArithmeticM_Accuracy_k5,0.9164666666666667
+Harmonic_mAP_Score,0.8044634113780078
+Arithmetic_mAP_Score,0.8165175445124847
+hP,0.7709683333333335
+hR,0.7902
+hF1,0.7785428571428572
+consistency,0.8862
+exact_match,0.6336

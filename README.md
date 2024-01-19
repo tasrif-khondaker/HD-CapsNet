@@ -40,18 +40,7 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 | Stanford Cars | HD_CapsNet_WO-Lc | HD-CapsNet Model Without Consistency Loss (Lc) | 81.17                        | 47.50%          | 16.39%          | 11.74%        | 23.56%                 | 31.40%              | 26.50%                | 25.76%      | 6.19%       |
 | Stanford Cars | HD_CapsNet_WO-SC | HD-CapsNet Model Without Skip Connection       | 25.85                        | 46.01%          | 12.29%          | 1.57%         | 17.10%                 | 24.04%              | 19.79%                | 13.60%      | 0.87%       |
 
-# Analysis:
+# Description:
 
-1. From Modification-1:
-   - Slowly increasing the dimension from *Coarse-to-Fine* \[8D>12D>16D (Coarse>Medium>FINE)\]for decreasing the dimension from *Fine-to-Coarse* \[16D>12D>8D (Fine>Medium>Coarse)\] seems to have effects on Mod-1.1 and Mod-1.3.
-
-     - i.e.  **\[16D>12D>8D (Fine>Medium>Coarse)\]** Bottom-UP approach.
-   - It seems that, Top-Down approach does not improve with this technique. In fact it drops the model performance.
-2. Form Modification-2: We want to use Top-Down approach in the architecture as it is a natural process.
-   - Using the top down approach with changing Primary capsule dimension:
-     - **Increasing or Decreasing primary capsule did not worked.** Keep P=8D.
-   - Increasing dimension in secondary capsules improved model performance (8D>12D>16D vs 32D>16D>8D)
-3. Skip Connections with Top-Down approach.
-   - Skip connection improved overall model performance for CIFER-10.
-   - Skip connection is slightly below in hierarchical performance of bottom-up approach on CIFER-100 Dataset.
-     - With consistency loss it performed better then bottom-up approach with out consistency loss.
+- Slowly decreasing the dimension from *Coarse-to-Fine* \[32D>16D>8D (Coarse>Medium>FINE)\]for Fashion-MNIST,CIFAR-10 and CIFAR-100
+- Slowly decreasing the dimension from *Coarse-to-Fine* \[64D>32D>16D (Coarse>Medium>FINE)\]for Marine Tree, CU Bird and Stanford Cars
