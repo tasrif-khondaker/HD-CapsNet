@@ -1,4 +1,4 @@
-# Modification-2 of HD-CapsNet
+# Architecture of HD-CapsNet
 
 Hierarchical Deep Capsule Network For Image Classification. The model employs capsule network for each hierarchical levels, treating as a global classification model.
 
