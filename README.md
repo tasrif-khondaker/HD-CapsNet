@@ -44,3 +44,20 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 
 - Slowly decreasing the dimension from *Coarse-to-Fine* \[32D>16D>8D (Coarse>Medium>FINE)\]for Fashion-MNIST,CIFAR-10 and CIFAR-100
 - Slowly decreasing the dimension from *Coarse-to-Fine* \[64D>32D>16D (Coarse>Medium>FINE)\]for Marine Tree, CU Bird and Stanford Cars
+
+---
+
+# Citation
+
+If you find this repository useful for your research or if it helps in your project, please consider citing it.
+
+```
+Noor, K.T., Robles-Kelly, A., Zhang, L.Y., Bouadjenek, M.R., Luo, W., 2023. A Hierarchy-Aware Deep Capsule Network for Multi-Label Image Classification. https://doi.org/10.2139/ssrn.4641400
+```
+
+#### Bibtex Citation Style:
+
+```bash
+ @article{Noor_Robles-Kelly_Zhang_Bouadjenek_Luo_2023, address={Rochester, NY}, type={SSRN Scholarly Paper}, title={A Hierarchy-Aware Deep Capsule Network for Multi-Label Image Classification}, url={https://papers.ssrn.com/abstract=4641400}, DOI={10.2139/ssrn.4641400}, abstractNote={Hierarchical classification is a significant challenge in computer vision due to the logical order and interconnectedness of multiple labels. This paper presents HDCapsNet, a novel neural network architecture based on deep capsule networks, specifically designed for hierarchical multi-label classification. By incorporating a tree-like hierarchical structure, HD-CapsNet is designed to leverage the inherent ontological order within the hierarchical label tree, thereby ensuring consistency across different classification levels. Additionally, we introduce a specialized loss function that promotes accurate hierarchical relationships while penalizing inconsistencies. This not only enhances classification performance but also strengthens the network’s robustness. We rigorously evaluate HDCapsNet’s efficacy by benchmarking it against existing multi-label classification methods across six diverse datasets: Fashion-MNIST, Marine-Tree, CIFAR-10, CIFAR-100, Caltech-UCSD Birds-200-2011, and Stanford Cars. Our results conclusively demonstrate that HD-CapsNet excels in learning hierarchical relationships and significantly outperforms the competition in various image classification tasks.}, number={4641400}, author={Noor, Khondaker Tasrif and Robles-Kelly, Antonio and Zhang, Leo Yu and Bouadjenek, Mohamed Reda and Luo, Wei}, year={2023}, month=nov, language={en} }
+
+```
