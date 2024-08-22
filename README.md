@@ -1,19 +1,16 @@
-# Architecture of HD-CapsNet
+# A consistency-aware deep capsule network for hierarchical multi-label image classification
 
-Hierarchical Deep Capsule Network For Image Classification. The model employs capsule network for each hierarchical levels, treating as a global classification model.
+This is the official implementation of the paper titled "A consistency-aware deep capsule network for hierarchical multi-label image classification" by Khondaker Tasrif Noor, Antonio Robles-Kelly, Leo Yu Zhang, Mohamed Reda Bouadjenek, and Wei Luo. The paper is available on [Neurocomputing Journal.](https://doi.org/10.1016/j.neucom.2024.128376)
 
-<!-- **The architecture of the BUH-CapsNet with Consistency loss is as follows:**
- 
-![fig:Architecture](Results/Architecture_BUH_CapsNet.png?raw=true "Architecture of the BUH-CapsNet") -->
+# Abstract
 
-**The architecture of the HD-CapsNet is as follows:**
-![fig:Architecture](Results/Architecture_HD_CapsNet.png?raw=true "Architecture of the HD-CapsNet")
+Hierarchical classification is a significant challenge in computer vision due to the logical order and interconnectedness of multiple labels. This paper presents HD-CapsNet, a novel neural network architecture based on deep capsule networks, specifically designed for hierarchical multi-label classification(HMC). By incorporating a tree-like hierarchical structure, HD-CapsNet is designed to leverage the inherent ontological order within the hierarchical label tree, thereby ensuring classification consistency across different levels. Additionally, we introduce a specialized loss function that promotes accurate hierarchical relationships while penalizing inconsistencies. This not only enhances classification performance but also strengthens the network’s robustness. We rigorously evaluate HD-CapsNet’s efficacy by benchmarking it against existing HMC methods across six diverse datasets: Fashion-MNIST, Marine-Tree, CIFAR-10, CIFAR-100, Caltech-UCSD Birds-200-2011, and Stanford Cars. Our results conclusively demonstrate that HD-CapsNet excels in learning hierarchical relationships and significantly outperforms the competition in various image classification tasks.
 
 # Results:
 
 ---
 
-| Dataset       | Models           | Model Description                              | Total  Trainable``params (M) | Accuracy Coarse | Accuracy Medium | Accuracy Fine | Hierarchical Precision | Hierarchical Recall | Hierarchical F1-Score | Consistency | Exact Match |
+| Dataset       | Models           | Model Description                              | Total  Trainable params (M) | Accuracy Coarse | Accuracy Medium | Accuracy Fine | Hierarchical Precision | Hierarchical Recall | Hierarchical F1-Score | Consistency | Exact Match |
 | ------------- | ---------------- | ---------------------------------------------- | ---------------------------- | --------------- | --------------- | ------------- | ---------------------- | ------------------- | --------------------- | ----------- | ----------- |
 |               |                  |                                                |                              |                 |                 |               |                        |                     |                       |             |             |
 | Fashion MNIST | HD_CapsNet       | HD-CapsNet Model                               | 4.82                         | 99.92%          | 97.79%          | 94.83%        | 97.51%                 | 97.54%              | 97.52%                | 99.84%      | 94.74%      |
@@ -40,11 +37,6 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 | Stanford Cars | HD_CapsNet_WO-Lc | HD-CapsNet Model Without Consistency Loss (Lc) | 81.17                        | 47.50%          | 16.39%          | 11.74%        | 23.56%                 | 31.40%              | 26.50%                | 25.76%      | 6.19%       |
 | Stanford Cars | HD_CapsNet_WO-SC | HD-CapsNet Model Without Skip Connection       | 25.85                        | 46.01%          | 12.29%          | 1.57%         | 17.10%                 | 24.04%              | 19.79%                | 13.60%      | 0.87%       |
 
-# Description:
-
-- Slowly decreasing the dimension from *Coarse-to-Fine* \[32D>16D>8D (Coarse>Medium>FINE)\]for Fashion-MNIST,CIFAR-10 and CIFAR-100
-- Slowly decreasing the dimension from *Coarse-to-Fine* \[64D>32D>16D (Coarse>Medium>FINE)\]for Marine Tree, CU Bird and Stanford Cars
-
 ---
 
 # Citation
@@ -52,12 +44,13 @@ Hierarchical Deep Capsule Network For Image Classification. The model employs ca
 If you find this repository useful for your research or if it helps in your project, please consider citing it.
 
 ```
-Noor, K.T., Robles-Kelly, A., Zhang, L.Y., Bouadjenek, M.R., Luo, W., 2023. A Hierarchy-Aware Deep Capsule Network for Multi-Label Image Classification. https://doi.org/10.2139/ssrn.4641400
+Noor, K.T., Robles-Kelly, A., Zhang, L.Y., Bouadjenek, M.R., Luo, W., 2024. A consistency-aware deep capsule network for hierarchical multi-label image classification. Neurocomputing 604, 128376. https://doi.org/10.1016/j.neucom.2024.128376
 ```
 
 #### Bibtex Citation Style:
 
 ```bash
- @article{Noor_Robles-Kelly_Zhang_Bouadjenek_Luo_2023, address={Rochester, NY}, type={SSRN Scholarly Paper}, title={A Hierarchy-Aware Deep Capsule Network for Multi-Label Image Classification}, url={https://papers.ssrn.com/abstract=4641400}, DOI={10.2139/ssrn.4641400}, abstractNote={Hierarchical classification is a significant challenge in computer vision due to the logical order and interconnectedness of multiple labels. This paper presents HDCapsNet, a novel neural network architecture based on deep capsule networks, specifically designed for hierarchical multi-label classification. By incorporating a tree-like hierarchical structure, HD-CapsNet is designed to leverage the inherent ontological order within the hierarchical label tree, thereby ensuring consistency across different classification levels. Additionally, we introduce a specialized loss function that promotes accurate hierarchical relationships while penalizing inconsistencies. This not only enhances classification performance but also strengthens the network’s robustness. We rigorously evaluate HDCapsNet’s efficacy by benchmarking it against existing multi-label classification methods across six diverse datasets: Fashion-MNIST, Marine-Tree, CIFAR-10, CIFAR-100, Caltech-UCSD Birds-200-2011, and Stanford Cars. Our results conclusively demonstrate that HD-CapsNet excels in learning hierarchical relationships and significantly outperforms the competition in various image classification tasks.}, number={4641400}, author={Noor, Khondaker Tasrif and Robles-Kelly, Antonio and Zhang, Leo Yu and Bouadjenek, Mohamed Reda and Luo, Wei}, year={2023}, month=nov, language={en} }
+ @article{Noor_Robles-Kelly_Zhang_Bouadjenek_Luo_2024, title={A consistency-aware deep capsule network for hierarchical multi-label image classification}, volume={604}, ISSN={0925-2312}, DOI={10.1016/j.neucom.2024.128376}, abstractNote={Hierarchical classification is a significant challenge in computer vision due to the logical order and interconnectedness of multiple labels. This paper presents HD-CapsNet, a novel neural network architecture based on deep capsule networks, specifically designed for hierarchical multi-label classification(HMC). By incorporating a tree-like hierarchical structure, HD-CapsNet is designed to leverage the inherent ontological order within the hierarchical label tree, thereby ensuring classification consistency across different levels. Additionally, we introduce a specialized loss function that promotes accurate hierarchical relationships while penalizing inconsistencies. This not only enhances classification performance but also strengthens the network’s robustness. We rigorously evaluate HD-CapsNet’s efficacy by benchmarking it against existing HMC methods across six diverse datasets: Fashion-MNIST, Marine-Tree, CIFAR-10, CIFAR-100, Caltech-UCSD Birds-200-2011, and Stanford Cars. Our results conclusively demonstrate that HD-CapsNet excels in learning hierarchical relationships and significantly outperforms the competition in various image classification tasks. Our implementation is available at https://github.com/tasrif-khondaker/HD-CapsNet.}, journal={Neurocomputing}, author={Noor, Khondaker Tasrif and Robles-Kelly, Antonio and Zhang, Leo Yu and Bouadjenek, Mohamed Reda and Luo, Wei}, year={2024}, month=nov, pages={128376}, language={en-GB} }
+
 
 ```
