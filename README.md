@@ -37,7 +37,7 @@ Hierarchical classification is a significant challenge in computer vision due to
 | Stanford Cars | HD-CapsNet $~\dagger$  | 81.17                       | 47.50%          | 16.39%          | 11.74%        | 23.56%                 | 31.40%              | 26.50%                | 25.76%      | 6.19%       |
 | Stanford Cars | HD-CapsNet $~\ddagger$ | 25.85                       | 46.01%          | 12.29%          | 1.57%         | 17.10%                 | 24.04%              | 19.79%                | 13.60%      | 0.87%       |
 
-**HERE,** $~\dagger$ denotes the HD-CapsNet models without the proposed consistency loss (Lc), and $~\ddagger$* denotes those without the skip connections between the secondary capsule layers, respectively.
+**HERE,** $\dagger$ denotes the HD-CapsNet models without the proposed consistency loss (Lc), and $\ddagger$ denotes those without the skip connections between the secondary capsule layers, respectively.
 
 # Citation
 
