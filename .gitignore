@@ -1,8 +1,0 @@
-*.pyc
-*.ipynb_checkpoints
-/Training_and_Analysis/*/logs/*
-*.h5
-*.code-workspace
-logs/*/HD_CapsNet/*/tb_logs*/
-.vscode
-.gitignore
