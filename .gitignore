@@ -4,3 +4,5 @@
 *.h5
 *.code-workspace
 logs/*/HD_CapsNet/*/tb_logs*/
+.vscode
+.gitignore
